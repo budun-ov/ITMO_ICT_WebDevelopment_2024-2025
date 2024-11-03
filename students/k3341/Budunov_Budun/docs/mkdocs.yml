@@ -1,8 +1,8 @@
 site_name: WEB-programming Documentation
 nav:
-  - Home: docs/index.md
+  - Home: index.md
   - Лабораторные:
-      - №1: docs/lw1/report_1.md
+      - №1: lw1/report_1.md
 theme:
   name: mkdocs
   color_mode: dark
