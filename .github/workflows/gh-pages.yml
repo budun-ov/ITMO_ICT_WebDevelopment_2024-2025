@@ -3,7 +3,7 @@ name: Deploy MkDocs site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Ветка, из которой будет собираться сайт
+      - main
 
 jobs:
   deploy:
@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Обновлено до v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4  # Обновлено до v4
         with:
           python-version: '3.x'
 
@@ -29,5 +29,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages  # Укажите здесь ветку `gh-pages`
+          publish_branch: gh-pages
           publish_dir: ./site
