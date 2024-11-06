@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Детали владельца</title>
+</head>
+<body>
+    <h1>Детали владельца</h1>
+    <p>Фамилия: {{ owner.last_name }}</p>
+    <p>Имя: {{ owner.first_name }}</p>
+    <p>Дата рождения: {{ owner.birth_date }}</p>
+    <p>Номер паспорта: {{ owner.passport_number }}</p>
+    <p>Домашний адрес: {{ owner.address }}</p>
+    <p>Национальность: {{ owner.nationality }}</p>
+    <a href="{% url 'owner_update' owner.id %}">Редактировать владельца</a>
+    <br>
+    <a href="{% url 'owner_list' %}">Назад к списку владельцев</a>
+</body>
+</html>
