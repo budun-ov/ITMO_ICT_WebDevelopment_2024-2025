@@ -1,0 +1,10 @@
+{% extends 'races/base.html' %}
+{% block content %}
+<h2>Add a Comment for {{ race.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<a href="{% url 'race_detail' race.id %}">Back to Race</a>
+{% endblock %}

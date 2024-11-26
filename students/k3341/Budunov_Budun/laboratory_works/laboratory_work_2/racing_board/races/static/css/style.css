@@ -1,0 +1,249 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.register-container, .login-container, .dashboard {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h2, h3 {
+    color: #343a40;
+}
+
+.messages .alert {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет карточкам переноситься на новую строку */
+    justify-content: space-between; /* Разделяет карточки равномерно */
+}
+
+.race-card {
+    width: 48%; /* Фиксированная ширина карточки (можно настроить) */
+    height: 450px; /* Фиксированная высота карточки (можно настроить) */
+    margin-bottom: 20px; /* Отступ между рядами карточек */
+    border: 1px solid #ccc; /* Граница для карточек */
+    border-radius: 5px; /* Закругленные углы */
+    overflow: hidden; /* Скрыть переполнение */
+    display: flex;
+    flex-direction: column; /* Позволяет управлять расположением содержимого */
+}
+
+.race-card img {
+    width: 100%; /* Занимает всю ширину родительского контейнера */
+    height: 280px; /* Фиксированная высота для изображения */
+    object-fit: cover; /* Обрезка изображения для заполнения контейнера */
+}
+
+.race-card-body {
+    padding: 10px; /* Отступы внутри карточки */
+}
+
+.race-photo {
+    width: 100%; /* Заставляет изображение занимать всю ширину родительского контейнера */
+    height: auto; /* Сохраняет пропорции изображения */
+    max-height: 300px; /* Ограничивает максимальную высоту изображения */
+    object-fit: cover; /* Изображение будет обрезано, чтобы заполнить контейнер */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.pagination span {
+    margin: 0 5px;
+}
+
+/* profile */
+.profile-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar-container {
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #007bff; /* Цвет границы */
+}
+
+.info-details {
+    flex-grow: 1;
+}
+
+.info-details p {
+    margin: 5px 0;
+}
+
+.races-section h2 {
+    margin-top: 20px;
+}
+
+.races-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.races-section li {
+    margin-bottom: 10px;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Красный цвет кнопки */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Темнее при наведении */
+}
+
+/* edit_profile */
+.edit-profile-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.edit-profile-container h1 {
+    margin-bottom: 20px;
+}
+
+.btn-success {
+    background-color: #007bff; /* Зеленый цвет кнопки */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Темнее при наведении */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Серый цвет кнопки отмены */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Убираем подчеркивание */
+    margin-left: 10px; /* Отступ между кнопками */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Темнее при наведении */
+}
+
+/* result_table in race_detail */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.results-table th, .results-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.results-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.results-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.results-table-container {
+    overflow-x: auto;
+}

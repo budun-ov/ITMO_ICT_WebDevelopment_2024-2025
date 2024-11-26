@@ -3,6 +3,7 @@ nav:
   - Home: index.md
   - Лабораторные:
       - №1: lw1/report_1.md
+      - №2: lw2/report_2.md
 theme:
   name: mkdocs
   color_mode: dark

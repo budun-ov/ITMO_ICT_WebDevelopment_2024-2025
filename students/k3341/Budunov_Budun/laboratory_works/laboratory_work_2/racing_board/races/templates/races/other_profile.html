@@ -1,0 +1,115 @@
+{% extends 'races/base.html' %}
+
+{% block content %}
+<div class="profile-container">
+
+    <div class="profile-info">
+        <div class="avatar-container">
+            <img src="{{ racer.avatar.url }}" alt="Avatar" class="avatar">
+        </div>
+        <div class="info-details">
+            <p><strong>Full Name:</strong> {{ racer.full_name }}</p>
+            <p><strong>Team Name:</strong> {{ racer.team_name }}</p>
+            <p><strong>Class:</strong> {{ racer.class_type }}</p>
+            <p><strong>Description:</strong> {{ racer.description|default:"No description available." }}</p>
+            <p><strong>Car Description:</strong> {{ racer.car_description|default:"No car description available." }}</p>
+            <p><strong>Experience:</strong> {{ racer.experience }} years</p>
+            <p><strong>Birth Date:</strong> {{ racer.birth_date }}</p>
+        </div>
+    </div>
+
+    <div class="races-section">
+        <h2>Upcoming Races</h2>
+        {% if upcoming_races %}
+            <ul>
+                {% for registration in upcoming_races %}
+                    <li>
+                        {{ registration.race.name }}
+                        <p>Date: {{ registration.race.date }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No upcoming races.</p>
+        {% endif %}
+
+        <h2>Past Races</h2>
+        {% if past_races %}
+            <ul>
+                {% for registration in past_races %}
+                    <li>
+                        {{ registration.race.name }}
+                        <p>Date: {{ registration.race.date }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No past races.</p>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .profile-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .profile-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .avatar-container {
+        flex-shrink: 0;
+        margin-right: 20px;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px solid #007bff; /* Цвет границы */
+    }
+
+    .info-details {
+        flex-grow: 1;
+    }
+
+    .info-details p {
+        margin: 5px 0;
+    }
+
+    .races-section h2 {
+        margin-top: 20px;
+    }
+
+    .races-section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .races-section li {
+        margin-bottom: 10px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Красный цвет кнопки */
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333; /* Темнее при наведении */
+    }
+</style>
+
+{% endblock %}

@@ -10,7 +10,7 @@ from .forms import OwnerForm
 
 class UserRegisterView(CreateView):
     form_class = CustomUserCreationForm
-    template_name = 'register.html'
+    template_name = 'register_racer.html'
     success_url = reverse_lazy('owner_list')  # Перенаправление после успешной регистрации
 
     def form_valid(self, form):

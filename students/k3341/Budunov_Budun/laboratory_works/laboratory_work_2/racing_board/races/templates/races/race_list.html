@@ -1,0 +1,47 @@
+{% extends 'races/base.html' %}
+{% load static %}
+{% block title %}Race List{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="container mt-5">
+    <h2 class="text-center">{{ race_type|capfirst }} Races</h2>
+
+    {% if page_obj.object_list %}
+        <div class="card-container"> <!-- Контейнер для карточек -->
+            {% for race in page_obj %}
+                <div class="race-card"> <!-- Карточка гонки -->
+                    <img src="{{ race.image.url }}" alt="{{ race.name }}">
+                    <div class="race-card-body">
+                        <h5>{{ race.name }}</h5>
+                        <p>Date: {{ race.date }}</p>
+                        <p>Description: {{ race.description }}</p>
+                        <a href="{% url 'race_detail' race.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+    {% else %}
+        <p>No races found.</p>
+    {% endif %}
+</div>
+{% endblock %}

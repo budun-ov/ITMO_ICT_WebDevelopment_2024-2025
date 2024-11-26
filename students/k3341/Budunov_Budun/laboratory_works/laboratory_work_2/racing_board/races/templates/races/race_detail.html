@@ -1,0 +1,277 @@
+{% extends 'races/base.html' %}
+{% load static %}
+{% block content %}
+<div class="race-detail-container">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <h1>{{ race.name }}</h1>
+
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+    {% endfor %}
+
+    <img src="{{ race.image.url }}" alt="Race Image" class="race-photo">
+    <p><strong>Date:</strong> {{ race.date }}</p>
+    <p><strong>Category:</strong> {{ race.race_class }}</p>
+    <p><strong>Location:</strong> {{ race.location }}</p>
+    <p><strong>Status:</strong> {% if race.is_completed %}Completed{% else %}Ongoing{% endif %}</p>
+    {% if average_rating %}
+        <p><strong>Rating:</strong> {{average_rating}}/10{% endif %}</p>
+
+    <div class="registration-section">
+        {% if race.is_completed == False %}
+            {% if user.is_authenticated %}
+                {% if is_registered %}
+                    <!-- Кнопка для отмены регистрации -->
+                    <form method="post" action="{% url 'cancel_register_for_race' race.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Cancel Registration</button>
+                    </form>
+                {% else %}
+                    <!-- Кнопка для регистрации на гонку -->
+                    <form method="post" action="{% url 'register_for_race' race.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="register-button">Register for this Race</button>
+                    </form>
+                {% endif %}
+            {% else %}
+                <p><a href="{% url 'login' %}" class="login-link">Log in</a> to register or cancel registration for this race.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% if race.is_completed %}
+        <h3>
+            <button id="toggle-results" onclick="toggleResults()">Show Results</button>
+        </h3>
+        <div id="results-container" style="display: none;">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Participant</th>
+                        <th>Team</th>
+                        <th>Car Description</th>
+                        <th>Avatar</th>
+                        <th>Time Taken</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{% url 'other_profile' result.racer.id %}">{{ result.racer.full_name }}</a></td>
+                            <td>{{ result.racer.team_name }}</td>
+                            <td>{{ result.racer.car_description }}</td>
+                            <td>
+                                {% if result.racer.avatar %}
+                                    <img src="{{ result.racer.avatar.url }}" alt="{{ result.racer.full_name }}" class="avatar">
+                                {% endif %}
+                            </td>
+                            <td>{{ result.result_time }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+
+<div class="comments-section">
+    <h2>Comments</h2>
+    <div id="comments-tabs">
+        <button onclick="showTab('questions')">Questions</button>
+        <button onclick="showTab('reviews')">Reviews</button>
+        <button onclick="showTab('collaboration')">Collaboration</button>
+    </div>
+
+    <div id="questions" class="comments-tab">
+        <h3>Questions</h3>
+        {% for comment in questions %}
+            <div class="comment">
+                <p>{{ comment.content }}</p>
+                <small>Posted by <a href="{% url 'other_profile' comment.commenter.racer.id %}">{{ comment.commenter.racer.full_name }}</a> on {{ comment.created_at }}</small>
+            </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'add_comment' race.id %}">
+                {% csrf_token %}
+                <textarea name="content" placeholder="Ask a question..." required></textarea>
+                <input type="hidden" name="comment_type" value="question">
+                <button type="submit">Submit Question</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <div id="reviews" class="comments-tab" style="display:none;">
+        <h3>Reviews</h3>
+        {% for review in reviews %}
+            <div class="comment">
+                <p>{{ review.content }}</p>
+                <small>Rating: {{ review.rating }}/10</small>
+                <small>Posted by <a href="{% url 'other_profile' review.commenter.racer.id %}">{{ review.commenter.racer.full_name }}</a> on {{ review.created_at }}</small>
+            </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'add_comment' race.id %}">
+                {% csrf_token %}
+                <textarea name="content" placeholder="Write a review..." required></textarea>
+                <input type="hidden" name="comment_type" value="review">
+                <input type="number" name="rating" min="1" max="10" placeholder="Rating (1-10)" required>
+                <button type="submit">Submit Review</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <div id="collaboration" class="comments-tab" style="display:none;">
+        <h3>Collaboration Questions</h3>
+        {% for comment in collaboration %}
+            <div class="comment">
+                <p>{{ comment.content }}</p>
+                <small>Posted by <a href="{% url 'other_profile' comment.commenter.racer.id %}">{{ comment.commenter.racer.full_name }}</a> on {{ comment.created_at }}</small>
+            </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'add_comment' race.id %}">
+                {% csrf_token %}
+                <textarea name="content" placeholder="Ask about collaboration..." required></textarea>
+                <input type="hidden" name="comment_type" value="collaboration">
+                <button type="submit">Submit Collaboration</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .messages .alert {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .registration-section {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .register-button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .register-button:hover {
+        background-color: #218838;
+    }
+
+    .success-message {
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .login-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .login-link:hover {
+        text-decoration: underline;
+    }
+
+    .results-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .results-table th, .results-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .results-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    .results-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .results-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .results-table-container {
+        overflow-x: auto;
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Красный цвет кнопки */
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333; /* Темнее при наведении */
+    }
+</style>
+
+<script>
+    function toggleResults() {
+        const resultsContainer = document.getElementById('results-container');
+        const toggleButton = document.getElementById('toggle-results');
+        if (resultsContainer.style.display === 'none') {
+            resultsContainer.style.display = 'block';
+            toggleButton.textContent = 'Hide Results';
+        } else {
+            resultsContainer.style.display = 'none';
+            toggleButton.textContent = 'Show Results';
+        }
+    }
+
+    function showTab(tab) {
+        // Скрываем все вкладки
+        document.querySelectorAll('.comments-tab').forEach(tabContent => {
+            tabContent.style.display = 'none';
+        });
+
+        // Показываем только выбранную вкладку
+        const activeTab = document.getElementById(tab);
+        if (activeTab) {
+            activeTab.style.display = 'block';
+        }
+    }
+</script>
+{% endblock %}
