@@ -155,17 +155,39 @@
 <p><img alt="models_lw2.png" src="../../images/models_lw2.png" /></p>
 <h3 id="2">2. Реализация функционала</h3>
 <p><strong>Admin</strong> – зарегистрировали модели для отображения в админке  </p>
-<p><strong>Views</strong> – отвечает за функционал работы пользователя с сайтом<br />
-- <strong>Регистрация:</strong> <code>def register(request):</code> - пользователю предлагается задать логин, пароль и всю информацию о себе как о гонщике
-- <strong>Login/logout:</strong> Тут все стандартно
-- <strong>Профиль:</strong> <code>def user_profile(request):</code> - собираем информацию (данные гонщика, предстоящие и прошедшие гонки) и рендерим страницу
-- <strong>Редактирование профиля:</strong> <code>def edit_profile(request):</code> - предоставляем пользователю возможность изменить указанные данные
-- <strong>Посещение профиля другого гонщика</strong>: <code>def other_profile(request, racer_id):</code> - рендерим страницу с данными другого гонщика
-- <strong>Регистрация на гонку:</strong> <code>def register_for_race(request, race_id):</code> - корректно регистрируем пользователя на гонку учитывая потенциальные некорректные действия пользователя (повторная регистрация, регистрация на гонку не своего класса и тд)
-- <strong>Отмена регистрации на гонку:</strong> <code>def cancel_register_for_race(request, race_id):</code> - корректно удаляем регистрацию гонщика на гонку
-- <strong>Список гонок:</strong> <code>def race_list(request, race_type):</code> - сборка гонок (предстоящих, прошедших) и пагинация
-- <strong>Детали гонки:</strong> <code>def race_detail(request, race_id):</code> - сборка данных гонки, комментариев, результатов для завершившихся гонок
-- <strong>Добавление комментов:</strong> <code>def add_comment(request, race_id):</code> - даем возможность корректно внести комментарий каждого типа</p>
+<p><strong>Views</strong> – отвечает за функционал работы пользователя с сайтом  </p>
+<ul>
+<li>
+<p><strong>Регистрация:</strong> <code>def register(request):</code> - пользователю предлагается задать логин, пароль и всю информацию о себе как о гонщике</p>
+</li>
+<li>
+<p><strong>Login/logout:</strong> Тут все стандартно</p>
+</li>
+<li>
+<p><strong>Профиль:</strong> <code>def user_profile(request):</code> - собираем информацию (данные гонщика, предстоящие и прошедшие гонки) и рендерим страницу</p>
+</li>
+<li>
+<p><strong>Редактирование профиля:</strong> <code>def edit_profile(request):</code> - предоставляем пользователю возможность изменить указанные данные</p>
+</li>
+<li>
+<p><strong>Посещение профиля другого гонщика</strong>: <code>def other_profile(request, racer_id):</code> - рендерим страницу с данными другого гонщика</p>
+</li>
+<li>
+<p><strong>Регистрация на гонку:</strong> <code>def register_for_race(request, race_id):</code> - корректно регистрируем пользователя на гонку учитывая потенциальные некорректные действия пользователя (повторная регистрация, регистрация на гонку не своего класса и тд)</p>
+</li>
+<li>
+<p><strong>Отмена регистрации на гонку:</strong> <code>def cancel_register_for_race(request, race_id):</code> - корректно удаляем регистрацию гонщика на гонку</p>
+</li>
+<li>
+<p><strong>Список гонок:</strong> <code>def race_list(request, race_type):</code> - сборка гонок (предстоящих, прошедших) и пагинация</p>
+</li>
+<li>
+<p><strong>Детали гонки:</strong> <code>def race_detail(request, race_id):</code> - сборка данных гонки, комментариев, результатов для завершившихся гонок</p>
+</li>
+<li>
+<p><strong>Добавление комментов:</strong> <code>def add_comment(request, race_id):</code> - даем возможность корректно внести комментарий каждого типа</p>
+</li>
+</ul>
 <p><strong>urls</strong> - добавили все пути для отображения страниц, добавления комментариев, логина/логаута и тп</p>
 <p>Очевидно внесены необходимые изменения в settings.py и реализованы все необходимые html-файлы, но в такие подробности вдаваться не будем</p>
 <h3 id="3">3. Внешний вид</h3>
