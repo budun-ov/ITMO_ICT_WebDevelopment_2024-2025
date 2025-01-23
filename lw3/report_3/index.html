@@ -172,80 +172,100 @@
 <p><img alt="web_db.png" src="../../images/lw3/web_db.png" /></p>
 <h3 id="2">2. Реализация функционала</h3>
 <p><strong>serializers</strong> – отвечает за сериализацию данных. Добавили базовые сериализотры, для всех моделей и всех их полей.</p>
-<p><strong>Views</strong> – отвечает за функционал работы пользователя с ендпоинтами<br />
-- <strong>AirlineViewSet</strong> - выводит полную информацию о каждой авиалинии. </p>
-<pre><code>Ендпоинт: &lt;http://127.0.0.1:8000/api/airlines/&gt;
-</code></pre>
+<p><strong>Views</strong> – отвечает за функционал работы пользователя с ендпоинтами  </p>
 <ul>
 <li>
-<p><strong>AirportViewSet</strong> - выводит полную информацию о каждом аэропорте. </p>
-<p>Ендпоинт:<a href="http://127.0.0.1:8000/api/airports/">http://127.0.0.1:8000/api/airports/</a>
-  - <code>def traffic(self, request, pk=None)</code> - возвращает количество рейсов (вылетов и прилетов) для указанного аэропорта.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airports/{id}/traffic/">http://127.0.0.1:8000/api/airports/{id}/traffic/</a></p>
+<p><strong>AirlineViewSet</strong> - выводит полную информацию о каждой авиалинии. Ендпоинт: <a href="http://127.0.0.1:8000/api/airlines/">http://127.0.0.1:8000/api/airlines/</a></p>
 </li>
 <li>
-<p><strong>RouteViewSet:</strong> - выводит полную информацию о каждом маршруте. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/">http://127.0.0.1:8000/api/routes/</a>
-  - <code>def with_transits(self, request)</code> - возвращает маршруты с указанием пересадок для каждого маршрута. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/with_transits/">http://127.0.0.1:8000/api/routes/with_transits/</a>
-  - <code>def total_travel_time(self, request, pk=None)</code> - вычисляет общее время в пути для указанного маршрута, включая пересадки.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/{id}/total_travel_time/">http://127.0.0.1:8000/api/routes/{id}/total_travel_time/</a>
-  - <code>def load_analysis(self, request)</code> - возвращает маршруты с их загруженностью (количество проданных билетов относительно доступных мест в самолетах).</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/load_analysis/">http://127.0.0.1:8000/api/routes/load_analysis/</a></p>
+<p><strong>AirportViewSet</strong> - выводит полную информацию о каждом аэропорте. Ендпоинт:<a href="http://127.0.0.1:8000/api/airports/">http://127.0.0.1:8000/api/airports/</a></p>
 </li>
 <li>
-<p><strong>TransitViewSet</strong> - выводит полную информацию о пересадках. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/transits/">http://127.0.0.1:8000/api/transits/</a></p>
+<p><code>def traffic(self, request, pk=None)</code> - возвращает количество рейсов (вылетов и прилетов) для указанного аэропорта. 
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/airports/{id}/traffic/">http://127.0.0.1:8000/api/airports/{id}/traffic/</a></p>
 </li>
 <li>
-<p><strong>AirplaneModelViewSet</strong> - возвращает полную информацию о каждой модели самолета. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airplane_models/">http://127.0.0.1:8000/api/airplane_models/</a></p>
+<p><strong>RouteViewSet:</strong> - выводит полную информацию о каждом маршруте. Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/">http://127.0.0.1:8000/api/routes/</a></p>
 </li>
 <li>
-<p><strong>AirplaneViewSet</strong> - возвращает полную информацию о каждом самолете. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/">http://127.0.0.1:8000/api/airplanes/</a>
-  - <code>def maintenance_history(self, request, pk=None)</code> - возвращает полную историю технического обслуживания для указанного самолета. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/{id}/maintenance_history/">http://127.0.0.1:8000/api/airplanes/{id}/maintenance_history/</a>
-  - <code>def stats(self, request)</code> - возвращает статистику по самолетам для указанной авиалинии: общее количество самолетов, их статус и модели.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/stats/?airline_id={id}">http://127.0.0.1:8000/api/airplanes/stats/?airline_id={id}</a>
-  - <code>def availability(self, request)</code> - проверяет, доступен ли самолет для указанного рейса.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/availability/?airplane_id={id}&amp;departure_time={dep_time}&amp;arrival_time={arr_time}">http://127.0.0.1:8000/api/airplanes/availability/?airplane_id={id}&amp;departure_time={dep_time}&amp;arrival_time={arr_time}</a></p>
+<p><code>def with_transits(self, request)</code> - возвращает маршруты с указанием пересадок для каждого маршрута. 
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/with_transits/">http://127.0.0.1:8000/api/routes/with_transits/</a></p>
 </li>
 <li>
-<p><strong>AirplaneMaintenanceViewSet</strong> - возвращает полную информацию о каждом обслуживании самолета. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airplane_maintenance/">http://127.0.0.1:8000/api/airplane_maintenance/</a>
-  - <code>def scheduled_for_month(self, request)</code> - возвращает самолеты, у которых обслуживание запланировано на указанный месяц.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/airplane_maintenance/scheduled_for_month/?year={yyyy}&amp;month={mm}">http://127.0.0.1:8000/api/airplane_maintenance/scheduled_for_month/?year={yyyy}&amp;month={mm}</a></p>
+<p><code>def total_travel_time(self, request, pk=None)</code> - вычисляет общее время в пути для указанного маршрута, включая пересадки. 
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/{id}/total_travel_time/">http://127.0.0.1:8000/api/routes/{id}/total_travel_time/</a></p>
 </li>
 <li>
-<p><strong>EmployeeViewSet</strong> - выводит полную информацию о каждом работнике. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/employees/">http://127.0.0.1:8000/api/employees/</a>
-  - <code>def by_experience(self, request)</code> - возвращает список сотрудников с фильтрацией по опыту работы. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/employees/by_experience/?min_experience={минимальный_опыт}">http://127.0.0.1:8000/api/employees/by_experience/?min_experience={минимальный_опыт}</a>
-  - <code>def by_role(self, request)</code> - возвращает список сотрудников авиалинии по указанной должности.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/employees/by_role/?airline_id={id_авиалинии}&amp;role={должность}">http://127.0.0.1:8000/api/employees/by_role/?airline_id={id_авиалинии}&amp;role={должность}</a></p>
+<p><code>def load_analysis(self, request)</code> - возвращает маршруты с их загруженностью (количество проданных билетов относительно доступных мест в самолетах).
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/routes/load_analysis/">http://127.0.0.1:8000/api/routes/load_analysis/</a></p>
 </li>
 <li>
-<p><strong>CrewViewSet</strong> - возвращает полную информацию о каждом экипаже. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/crews/">http://127.0.0.1:8000/api/crews/</a>
-  - <code>def flights(self, request, pk=None)</code> - возвращает список рейсов, закрепленных за указанным экипажем. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/crews/{id_экипажа}/flights/">http://127.0.0.1:8000/api/crews/{id_экипажа}/flights/</a>
-  - <code>def with_members(self, request)</code> - возвращает список всех экипажей с подробной информацией о каждом члене.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/crews/with_members/">http://127.0.0.1:8000/api/crews/with_members/</a></p>
+<p><strong>TransitViewSet</strong> - выводит полную информацию о пересадках. Ендпоинт: <a href="http://127.0.0.1:8000/api/transits/">http://127.0.0.1:8000/api/transits/</a></p>
 </li>
 <li>
-<p><strong>CrewMemberViewSet</strong> - выводит полную информацию о членах каждого экипажа.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/crew_members/">http://127.0.0.1:8000/api/crew_members/</a></p>
+<p><strong>AirplaneModelViewSet</strong> - возвращает полную информацию о каждой модели самолета. Ендпоинт: <a href="http://127.0.0.1:8000/api/airplane_models/">http://127.0.0.1:8000/api/airplane_models/</a></p>
 </li>
 <li>
-<p><strong>FlightViewSet</strong> - выводит полную информацию о каждом рейсе. </p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/">http://127.0.0.1:8000/api/flights/</a>
-  - <code>def nearest(self, request)</code> - возвращает ближайшие рейсы для указанного аэропорта.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/nearest/?airport_code={код_аэропорта}">http://127.0.0.1:8000/api/flights/nearest/?airport_code={код_аэропорта}</a>
-  - <code>def status_summary(self, request)</code> - возвращает текущий статус рейсов (по состоянию на сегодня) с указанием количества рейсов в каждом статусе.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/status_summary/">http://127.0.0.1:8000/api/flights/status_summary/</a>
-  - <code>def search(self, request)</code> - возвращает рейсы, отфильтрованные по аэропорту отправления, аэропорту прибытия и дате.</p>
-<p>Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/search/?departure_airport={code}&amp;arrival_airport={code}&amp;date={yyyy-mm-dd}">http://127.0.0.1:8000/api/flights/search/?departure_airport={code}&amp;arrival_airport={code}&amp;date={yyyy-mm-dd}</a></p>
+<p><strong>AirplaneViewSet</strong> - возвращает полную информацию о каждом самолете. Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/">http://127.0.0.1:8000/api/airplanes/</a></p>
+</li>
+<li>
+<p><code>def maintenance_history(self, request, pk=None)</code> - возвращает полную историю технического обслуживания для указанного самолета.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/{id}/maintenance_history/">http://127.0.0.1:8000/api/airplanes/{id}/maintenance_history/</a></p>
+</li>
+<li>
+<p><code>def stats(self, request)</code> - возвращает статистику по самолетам для указанной авиалинии: общее количество самолетов, их статус и модели.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/stats/?airline_id={id}">http://127.0.0.1:8000/api/airplanes/stats/?airline_id={id}</a></p>
+</li>
+<li>
+<p><code>def availability(self, request)</code> - проверяет, доступен ли самолет для указанного рейса.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/airplanes/availability/?airplane_id={id}&amp;departure_time={dep_time}&amp;arrival_time={arr_time}">http://127.0.0.1:8000/api/airplanes/availability/?airplane_id={id}&amp;departure_time={dep_time}&amp;arrival_time={arr_time}</a></p>
+</li>
+<li>
+<p><strong>AirplaneMaintenanceViewSet</strong> - возвращает полную информацию о каждом обслуживании самолета. Ендпоинт: <a href="http://127.0.0.1:8000/api/airplane_maintenance/">http://127.0.0.1:8000/api/airplane_maintenance/</a></p>
+</li>
+<li>
+<p><code>def scheduled_for_month(self, request)</code> - возвращает самолеты, у которых обслуживание запланировано на указанный месяц.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/airplane_maintenance/scheduled_for_month/?year={yyyy}&amp;month={mm}">http://127.0.0.1:8000/api/airplane_maintenance/scheduled_for_month/?year={yyyy}&amp;month={mm}</a></p>
+</li>
+<li>
+<p><strong>EmployeeViewSet</strong> - выводит полную информацию о каждом работнике. Ендпоинт: <a href="http://127.0.0.1:8000/api/employees/">http://127.0.0.1:8000/api/employees/</a></p>
+</li>
+<li>
+<p><code>def by_experience(self, request)</code> - возвращает список сотрудников с фильтрацией по опыту работы.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/employees/by_experience/?min_experience={минимальный_опыт}">http://127.0.0.1:8000/api/employees/by_experience/?min_experience={минимальный_опыт}</a></p>
+</li>
+<li>
+<p><code>def by_role(self, request)</code> - возвращает список сотрудников авиалинии по указанной должности. 
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/employees/by_role/?airline_id={id_авиалинии}&amp;role={должность}">http://127.0.0.1:8000/api/employees/by_role/?airline_id={id_авиалинии}&amp;role={должность}</a></p>
+</li>
+<li>
+<p><strong>CrewViewSet</strong> - возвращает полную информацию о каждом экипаже. Ендпоинт: <a href="http://127.0.0.1:8000/api/crews/">http://127.0.0.1:8000/api/crews/</a></p>
+</li>
+<li>
+<p><code>def flights(self, request, pk=None)</code> - возвращает список рейсов, закрепленных за указанным экипажем.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/crews/{id_экипажа}/flights/">http://127.0.0.1:8000/api/crews/{id_экипажа}/flights/</a></p>
+</li>
+<li>
+<p><code>def with_members(self, request)</code> - возвращает список всех экипажей с подробной информацией о каждом члене. 
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/crews/with_members/">http://127.0.0.1:8000/api/crews/with_members/</a></p>
+</li>
+<li>
+<p><strong>CrewMemberViewSet</strong> - выводит полную информацию о членах каждого экипажа. Ендпоинт: <a href="http://127.0.0.1:8000/api/crew_members/">http://127.0.0.1:8000/api/crew_members/</a></p>
+</li>
+<li>
+<p><strong>FlightViewSet</strong> - выводит полную информацию о каждом рейсе. Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/">http://127.0.0.1:8000/api/flights/</a></p>
+</li>
+<li>
+<p><code>def nearest(self, request)</code> - возвращает ближайшие рейсы для указанного аэропорта.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/nearest/?airport_code={код_аэропорта}">http://127.0.0.1:8000/api/flights/nearest/?airport_code={код_аэропорта}</a></p>
+</li>
+<li>
+<p><code>def status_summary(self, request)</code> - возвращает текущий статус рейсов (по состоянию на сегодня) с указанием количества рейсов в каждом статусе.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/status_summary/">http://127.0.0.1:8000/api/flights/status_summary/</a></p>
+</li>
+<li>
+<p><code>def search(self, request)</code> - возвращает рейсы, отфильтрованные по аэропорту отправления, аэропорту прибытия и дате.
+  Ендпоинт: <a href="http://127.0.0.1:8000/api/flights/search/?departure_airport={code}&amp;arrival_airport={code}&amp;date={yyyy-mm-dd}">http://127.0.0.1:8000/api/flights/search/?departure_airport={code}&amp;arrival_airport={code}&amp;date={yyyy-mm-dd}</a></p>
 </li>
 </ul>
 <p><strong>urls</strong> - url регистрировали с помощью <strong>DefaultRouter</strong> (позволяет регистрировать пути для всех CRUD запросов и 
