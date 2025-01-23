@@ -39,8 +39,18 @@ class Car(models.Model):
 
 # Модель для таблицы "Владение"
 class Ownership(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Владелец")
-    car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Автомобиль")
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Владелец",
+        related_name="ownerships"
+    )
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        verbose_name="Автомобиль",
+        related_name="ownerships"
+    )
     start_date = models.DateTimeField(verbose_name="Дата начала")
     end_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата окончания")
 
@@ -53,7 +63,12 @@ class Ownership(models.Model):
 
 # Модель для таблицы "Водительское_удостоверение"
 class DriverLicense(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Владелец")
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Владелец",
+        related_name="driver_license"
+    )
     license_number = models.CharField(max_length=10, unique=True, verbose_name="Номер удостоверения")
     license_type = models.CharField(max_length=10, verbose_name="Тип")
     issue_date = models.DateTimeField(verbose_name="Дата выдачи")
