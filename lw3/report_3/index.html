@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>№3 - WEB-programming Documentation</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">WEB-programming Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Лабораторные <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../lw1/report_1/" class="dropdown-item">№1</a>
+</li>
+                                    
+<li>
+    <a href="../../lw2/report_2/" class="dropdown-item">№2</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">№3</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Практики <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../pw3_1/report_3_1/" class="dropdown-item">№3.1</a>
+</li>
+                                    
+<li>
+    <a href="../../pw3_2/report_3_2/" class="dropdown-item">№3.2</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../lw2/report_2/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../pw3_1/report_3_1/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">Отчет по лабораторной работе</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">Цель работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">Задачи</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">Ход работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">Отчет по лабораторной работе</h1>
+<hr />
+<h2 id="_2">Цель работы</h2>
+<p>Реализация серверной части приложения средствами django и djangorestframework</p>
+<hr />
+<h2 id="_3">Задачи</h2>
+<ol>
+<li>Реализовать модель базы данных средствами DjangoORM.  </li>
+<li>Реализовать логику работу API средствами Django REST Framework (используя методы сериализации).</li>
+<li>Подключить регистрацию / авторизацию по токенам / вывод информации о текущем пользователе средствами Djoser.  </li>
+</ol>
+<hr />
+<h2 id="_4">Ход работы</h2>
+<h3 id="1">1. Реализация моделей</h3>
+<p>Составлена следующая модель базы данных, которая реализована в models.py</p>
+<p><img alt="web_db.png" src="../../images/lw3/web_db.png" /></p>
+<h3 id="2">2. Реализация функционала</h3>
+<p><strong>serializers</strong> – отвечает за сериализацию данных. Добавили базовые сериализотры, для всех моделей и всех их полей.</p>
+<p><strong>Views</strong> – отвечает за функционал работы пользователя с ендпоинтами<br />
+- <strong>AirlineViewSet</strong> - выводит полную информацию о каждой авиалинии. </p>
+<pre><code>Ендпоинт: http://127.0.0.1:8000/api/airlines/
+</code></pre>
+<ul>
+<li>
+<p><strong>AirportViewSet</strong> - выводит полную информацию о каждом аэропорте. </p>
+<p>Ендпоинт:http://127.0.0.1:8000/api/airports/
+  - <code>def traffic(self, request, pk=None)</code> - возвращает количество рейсов (вылетов и прилетов) для указанного аэропорта.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airports/{id}/traffic/</p>
+</li>
+<li>
+<p><strong>RouteViewSet:</strong> - выводит полную информацию о каждом маршруте. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/routes/
+  - <code>def with_transits(self, request)</code> - возвращает маршруты с указанием пересадок для каждого маршрута. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/routes/with_transits/
+  - <code>def total_travel_time(self, request, pk=None)</code> - вычисляет общее время в пути для указанного маршрута, включая пересадки.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/routes/{id}/total_travel_time/
+  - <code>def load_analysis(self, request)</code> - возвращает маршруты с их загруженностью (количество проданных билетов относительно доступных мест в самолетах).</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/routes/load_analysis/</p>
+</li>
+<li>
+<p><strong>TransitViewSet</strong> - выводит полную информацию о пересадках. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/transits/</p>
+</li>
+<li>
+<p><strong>AirplaneModelViewSet</strong> - возвращает полную информацию о каждой модели самолета. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airplane_models/</p>
+</li>
+<li>
+<p><strong>AirplaneViewSet</strong> - возвращает полную информацию о каждом самолете. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airplanes/
+  - <code>def maintenance_history(self, request, pk=None)</code> - возвращает полную историю технического обслуживания для указанного самолета. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airplanes/{id}/maintenance_history/
+  - <code>def stats(self, request)</code> - возвращает статистику по самолетам для указанной авиалинии: общее количество самолетов, их статус и модели.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airplanes/stats/?airline_id={id}
+  - <code>def availability(self, request)</code> - проверяет, доступен ли самолет для указанного рейса.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airplanes/availability/?airplane_id={id}&amp;departure_time={dep_time}&amp;arrival_time={arr_time}</p>
+</li>
+<li>
+<p><strong>AirplaneMaintenanceViewSet</strong> - возвращает полную информацию о каждом обслуживании самолета. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airplane_maintenance/
+  - <code>def scheduled_for_month(self, request)</code> - возвращает самолеты, у которых обслуживание запланировано на указанный месяц.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/airplane_maintenance/scheduled_for_month/?year={yyyy}&amp;month={mm}</p>
+</li>
+<li>
+<p><strong>EmployeeViewSet</strong> - выводит полную информацию о каждом работнике. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/employees/
+  - <code>def by_experience(self, request)</code> - возвращает список сотрудников с фильтрацией по опыту работы. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/employees/by_experience/?min_experience={минимальный_опыт}
+  - <code>def by_role(self, request)</code> - возвращает список сотрудников авиалинии по указанной должности.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/employees/by_role/?airline_id={id_авиалинии}&amp;role={должность}</p>
+</li>
+<li>
+<p><strong>CrewViewSet</strong> - возвращает полную информацию о каждом экипаже. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/crews/
+  - <code>def flights(self, request, pk=None)</code> - возвращает список рейсов, закрепленных за указанным экипажем. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/crews/{id_экипажа}/flights/
+  - <code>def with_members(self, request)</code> - возвращает список всех экипажей с подробной информацией о каждом члене.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/crews/with_members/</p>
+</li>
+<li>
+<p><strong>CrewMemberViewSet</strong> - выводит полную информацию о членах каждого экипажа.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/crew_members/</p>
+</li>
+<li>
+<p><strong>FlightViewSet</strong> - выводит полную информацию о каждом рейсе. </p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/flights/
+  - <code>def nearest(self, request)</code> - возвращает ближайшие рейсы для указанного аэропорта.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/flights/nearest/?airport_code={код_аэропорта}
+  - <code>def status_summary(self, request)</code> - возвращает текущий статус рейсов (по состоянию на сегодня) с указанием количества рейсов в каждом статусе.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/flights/status_summary/
+  - <code>def search(self, request)</code> - возвращает рейсы, отфильтрованные по аэропорту отправления, аэропорту прибытия и дате.</p>
+<p>Ендпоинт: http://127.0.0.1:8000/api/flights/search/?departure_airport={code}&amp;arrival_airport={code}&amp;date={yyyy-mm-dd}</p>
+</li>
+</ul>
+<p><strong>urls</strong> - url регистрировали с помощью <strong>DefaultRouter</strong> (позволяет регистрировать пути для всех CRUD запросов и 
+регистрирует кастомные запросы, определенные через декоратор <strong>@action</strong> внутри класса ModelViewSet):</p>
+<pre><code class="language-python">router = DefaultRouter()
+router.register(r'models', ModelViewSet) # пример
+
+urlpatterns = [
+    path('api/', include(router.urls)),
+]
+</code></pre>
+<h3 id="3-djoser">3. Djoser</h3>
+<p>Добавили <code>'djoser'</code> в <code>settings.INSTALLED_APPS</code>, а также добавили следующий код:</p>
+<pre><code class="language-python"># Настройки Djoser
+DJOSER = {
+    'LOGIN_FIELD': 'username',
+    'EMAIL': 'email',
+    'USER_CREATE_PASSWORD_RETYPE': True,  # повторный ввод пароля при регистрации
+    'SEND_ACTIVATION_EMAIL': False,  # отправка писем активации
+    'SERIALIZERS': {
+        'user': 'djoser.serializers.UserSerializer',
+        'current_user': 'djoser.serializers.UserSerializer',
+    },
+}
+
+# Настройки JWT
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Время жизни токена
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+</code></pre>
+<h3 id="_5">Заключение</h3>
+<p>У нас есть теперь собственный API, который доступен только после регистрации и аутентификации</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
