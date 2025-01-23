@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,13 @@
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>№2 - WEB-programming Documentation</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" disabled>
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -22,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../..">WEB-programming Documentation</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -30,11 +34,11 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../.." class="nav-link">Home</a>
                             </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Лабораторные <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Лабораторные</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -42,7 +46,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">№2</a>
+    <a href="./" class="dropdown-item active" aria-current="page">№2</a>
 </li>
                                     
 <li>
@@ -50,8 +54,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Практики <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Практики</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -65,9 +69,9 @@
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -81,35 +85,65 @@
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
+                            <li class="nav-item dropdown">
+                              <button id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme" class="nav-link dropdown-toggle">
+                                <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                <span class="d-lg-none ms-2">Toggle theme</span>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                                    <i class="fa-solid fa-sun fa-fw"></i>
+                                    <span class="ms-2">Light</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="true">
+                                    <i class="fa-solid fa-moon fa-fw"></i>
+                                    <span class="ms-2">Dark</span>
+                                    <i class="fa-solid fa-check ms-auto"></i>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+                                    <i class="fa-solid fa-circle-half-stroke fa-fw"></i>
+                                    <span class="ms-2">Auto</span>
+                                    <i class="fa-solid fa-check ms-auto d-none"></i>
+                                  </button>
+                                </li>
+                              </ul>
+                            </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <script src="../../js/darkmode.js"></script>
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">Отчет по лабораторной работе</a>
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">Отчет по лабораторной работе</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">Цель работы</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">Задачи</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Цель работы</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">Ход работы</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Задачи</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Ход работы</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -139,16 +173,36 @@
 <h3 id="2">2. Реализация функционала</h3>
 <p><strong>Admin</strong> – зарегистрировали модели для отображения в админке  </p>
 <p><strong>Views</strong> – отвечает за функционал работы пользователя с сайтом<br />
-- <strong>Регистрация:</strong> <code>def register(request):</code> - пользователю предлагается задать логин, пароль и всю информацию о себе как о гонщике
-- <strong>Login/logout:</strong> Тут все стандартно
-- <strong>Профиль:</strong> <code>def user_profile(request):</code> - собираем информацию (данные гонщика, предстоящие и прошедшие гонки) и рендерим страницу
-- <strong>Редактирование профиля:</strong> <code>def edit_profile(request):</code> - предоставляем пользователю возможность изменить указанные данные
-- <strong>Посещение профиля другого гонщика</strong>: <code>def other_profile(request, racer_id):</code> - рендерим страницу с данными другого гонщика
-- <strong>Регистрация на гонку:</strong> <code>def register_for_race(request, race_id):</code> - корректно регистрируем пользователя на гонку учитывая потенциальные некорректные действия пользователя (повторная регистрация, регистрация на гонку не своего класса и тд)
-- <strong>Отмена регистрации на гонку:</strong> <code>def cancel_register_for_race(request, race_id):</code> - корректно удаляем регистрацию гонщика на гонку
-- <strong>Список гонок:</strong> <code>def race_list(request, race_type):</code> - сборка гонок (предстоящих, прошедших) и пагинация
-- <strong>Детали гонки:</strong> <code>def race_detail(request, race_id):</code> - сборка данных гонки, комментариев, результатов для завершившихся гонок
-- <strong>Добавление комментов:</strong> <code>def add_comment(request, race_id):</code> - даем возможность корректно внести комментарий каждого типа</p>
+- <strong>Регистрация:</strong> <code>def register(request):</code> - пользователю предлагается задать логин, пароль и всю информацию о себе как о гонщике</p>
+<ul>
+<li>
+<p><strong>Login/logout:</strong> Тут все стандартно</p>
+</li>
+<li>
+<p><strong>Профиль:</strong> <code>def user_profile(request):</code> - собираем информацию (данные гонщика, предстоящие и прошедшие гонки) и рендерим страницу</p>
+</li>
+<li>
+<p><strong>Редактирование профиля:</strong> <code>def edit_profile(request):</code> - предоставляем пользователю возможность изменить указанные данные</p>
+</li>
+<li>
+<p><strong>Посещение профиля другого гонщика</strong>: <code>def other_profile(request, racer_id):</code> - рендерим страницу с данными другого гонщика</p>
+</li>
+<li>
+<p><strong>Регистрация на гонку:</strong> <code>def register_for_race(request, race_id):</code> - корректно регистрируем пользователя на гонку учитывая потенциальные некорректные действия пользователя (повторная регистрация, регистрация на гонку не своего класса и тд)</p>
+</li>
+<li>
+<p><strong>Отмена регистрации на гонку:</strong> <code>def cancel_register_for_race(request, race_id):</code> - корректно удаляем регистрацию гонщика на гонку</p>
+</li>
+<li>
+<p><strong>Список гонок:</strong> <code>def race_list(request, race_type):</code> - сборка гонок (предстоящих, прошедших) и пагинация</p>
+</li>
+<li>
+<p><strong>Детали гонки:</strong> <code>def race_detail(request, race_id):</code> - сборка данных гонки, комментариев, результатов для завершившихся гонок</p>
+</li>
+<li>
+<p><strong>Добавление комментов:</strong> <code>def add_comment(request, race_id):</code> - даем возможность корректно внести комментарий каждого типа</p>
+</li>
+</ul>
 <p><strong>urls</strong> - добавили все пути для отображения страниц, добавления комментариев, логина/логаута и тп</p>
 <p>Очевидно внесены необходимые изменения в settings.py и реализованы все необходимые html-файлы, но в такие подробности вдаваться не будем</p>
 <h3 id="3">3. Внешний вид</h3>
@@ -163,8 +217,7 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -177,7 +230,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -197,7 +250,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
