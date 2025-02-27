@@ -129,7 +129,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#_11" class="nav-link">Заключение</a>
+            <li class="nav-item" data-level="2"><a href="#_14" class="nav-link">Заключение</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -219,27 +219,27 @@ async login(username, password) {
 }
 </code></pre>
 <h3 id="_10">Управление профилем</h3>
-<p><code>``javascript // Получение данных профиля
+<pre><code class="language-javascript">// Получение данных профиля
 async fetchEmployeeProfile() {
   const tokens = JSON.parse(localStorage.getItem('tokens'))
   const userResponse = await axios.get('/api/auth/users/me/', {
-    headers: { Authorization:</code>Bearer ${tokens.access}<code>}
+    headers: { Authorization: `Bearer ${tokens.access}` }
   })
-  const employeeResponse = await axios.get(</code>/api/employee/${userResponse.data.id}/`)
+  const employeeResponse = await axios.get(`/api/employee/${userResponse.data.id}/`)
   return employeeResponse.data
-}</p>
-<p>// Обновление аватара
+}
+
+// Обновление аватара
 async updateAvatar(avatar) {
   const formData = new FormData()
   formData.append('avatar', avatar)
-  await axios.patch(<code>/api/user/${userId}/avatar/</code>, formData, {
+  await axios.patch(`/api/user/${userId}/avatar/`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   })
-}</p>
-<pre><code>
-Управление сотрудниками
-
-```javascript // Получение списка сотрудников
+}
+</code></pre>
+<h3 id="_11">Управление сотрудниками</h3>
+<pre><code class="language-javascript">// Получение списка сотрудников
 async getEmployees() {
   const response = await axios.get('/api/employee/')
   return response.data
@@ -260,8 +260,8 @@ async changeEmployeeStatus(id, isActive) {
   })
 }
 </code></pre>
-<p>Обработка ошибок</p>
-<p>```javascript try {
+<h3 id="_12">Обработка ошибок</h3>
+<pre><code class="language-javascript">try {
   await api.call()
 } catch (error) {
   if (error.response) {
@@ -274,11 +274,10 @@ async changeEmployeeStatus(id, isActive) {
     // Другие ошибки
     console.error('Error:', error.message)
   }
-}</p>
-<pre><code>
-Автоматическое обновление токена
-
-```javascript // Перехватчик для обновления токена
+}
+</code></pre>
+<h3 id="_13">Автоматическое обновление токена</h3>
+<pre><code class="language-javascript">// Перехватчик для обновления токена
 axios.interceptors.response.use(
   response =&gt; response,
   async error =&gt; {
@@ -293,21 +292,22 @@ axios.interceptors.response.use(
   }
 )
 </code></pre>
-<p>Конфигурация Axios</p>
-<p>```javascript // Базовая конфигурация
-axios.defaults.baseURL = 'http://127.0.0.1:8000'</p>
-<p>// Добавление токена к каждому запросу
+<h3 id="axios">Конфигурация Axios</h3>
+<pre><code class="language-javascript">// Базовая конфигурация
+axios.defaults.baseURL = 'http://127.0.0.1:8000'
+
+// Добавление токена к каждому запросу
 axios.interceptors.request.use(config =&gt; {
   const tokens = JSON.parse(localStorage.getItem('tokens'))
   if (tokens) {
-    config.headers.Authorization = <code>Bearer ${tokens.access}</code>
+    config.headers.Authorization = `Bearer ${tokens.access}`
   }
   return config
 })
-```</p>
-<h2 id="_11">Заключение</h2>
+</code></pre>
+<h2 id="_14">Заключение</h2>
 <p>В ходе выполнения лабораторной работы был успешно разработан фронтенд для системы управления аэропортом с использованием современного стека технологий Vue.js и Vuetify.</p>
-<h3 id="_12">Основные достижения:</h3>
+<h3 id="_15">Основные достижения:</h3>
 <ul>
 <li>Реализована система аутентификации с использованием JWT токенов</li>
 <li>Создан удобный интерфейс управления профилями сотрудников</li>
