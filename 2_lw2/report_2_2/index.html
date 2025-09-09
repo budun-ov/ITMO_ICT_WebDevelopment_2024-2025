@@ -541,6 +541,90 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-task_threadingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. task_threading.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-task_asyncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. task_async.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Результаты времени выполнения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Результаты времени выполнения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 1: CPU-bound задача (Суммирование чисел)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-io-bound-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 2: I/O-bound задача (Парсинг URL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Анализ и сравнение результатов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Анализ и сравнение результатов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU-bound задача
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      I/O-bound задача
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -732,6 +816,90 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-task_threadingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. task_threading.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-task_asyncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. task_async.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Результаты времени выполнения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Результаты времени выполнения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 1: CPU-bound задача (Суммирование чисел)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-io-bound-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 2: I/O-bound задача (Парсинг URL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Анализ и сравнение результатов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Анализ и сравнение результатов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU-bound задача
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      I/O-bound задача
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -765,20 +933,6 @@
 <p>На основе этих задач мы сравним эффективность каждого подхода и проанализируем полученные результаты времени выполнения.</p>
 <h2 id="_2">Описание программ и используемых подходов</h2>
 <h3 id="1-task_multiprocessingpy">1. <code>task_multiprocessing.py</code></h3>
-<p>Данная программа использует модуль <code>multiprocessing</code> для выполнения задач в нескольких процессах.</p>
-<p><strong>Подход и особенности:</strong>
-*   <strong>Принцип работы</strong>: <code>multiprocessing</code> обходит ограничение глобального интерпретатора (GIL) путем создания отдельных процессов, каждый со своим собственным интерпретатором Python и пространством памяти. Это позволяет достичь настоящего параллелизма на многоядерных системах.
-*   <strong>Реализация <code>task_1</code> (CPU-bound)</strong>: Диапазон чисел делится на части, и каждая часть обрабатывается в отдельном процессе с помощью <code>multiprocessing.Pool</code>. Это идеальный сценарий для <code>multiprocessing</code>, так как вычисления могут выполняться параллельно на разных ядрах CPU.
-*   <strong>Реализация <code>task_2</code> (I/O-bound)</strong>: Список URL-адресов делится между несколькими процессами. Каждый процесс последовательно обрабатывает свою часть URL. Хотя это и работает, создание процессов является ресурсоемкой операцией (по памяти и времени), что может делать этот подход менее эффективным для I/O-задач по сравнению с <code>threading</code> или <code>asyncio</code>.</p>
-<h1 id="python_1">Отчет по лабораторной работе: Сравнение подходов к конкурентному и параллельному программированию в Python</h1>
-<h2 id="_3">Введение</h2>
-<p>Целью данной лабораторной работы является исследование и сравнение трех различных подходов к организации конкурентного и параллельного выполнения кода в Python: <code>multiprocessing</code>, <code>threading</code> и <code>asyncio</code>.</p>
-<p>Для анализа были реализованы две типовые задачи:
-1.  <strong>CPU-bound задача</strong>: вычисление суммы чисел от 1 до 1,000,000,000. Эта задача интенсивно использует процессор.
-2.  <strong>I/O-bound задача</strong>: парсинг 20 веб-страниц с использованием API. Эта задача большую часть времени ожидает ответа от сети.</p>
-<p>На основе этих задач мы сравним эффективность каждого подхода и проанализируем полученные результаты времени выполнения.</p>
-<h2 id="_4">Описание программ и используемых подходов</h2>
-<h3 id="1-task_multiprocessingpy_1">1. <code>task_multiprocessing.py</code></h3>
 <p>Данная программа использует модуль <code>multiprocessing</code> для выполнения задач в нескольких процессах.</p>
 <p><strong>Подход и особенности:</strong>
 *   <strong>Принцип работы</strong>: <code>multiprocessing</code> обходит ограничение глобального интерпретатора (GIL) путем создания отдельных процессов, каждый со своим собственным интерпретатором Python и пространством памяти. Это позволяет достичь настоящего параллелизма на многоядерных системах.
@@ -879,7 +1033,7 @@
     <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
     <span class="c1"># ...</span>
 </code></pre></div></p>
-<h2 id="_5">Результаты времени выполнения</h2>
+<h2 id="_3">Результаты времени выполнения</h2>
 <h3 id="1-cpu-bound">Таблица 1: CPU-bound задача (Суммирование чисел)</h3>
 <table>
 <thead>
@@ -926,7 +1080,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_6">Анализ и сравнение результатов</h2>
+<h2 id="_4">Анализ и сравнение результатов</h2>
 <h3 id="cpu-bound">CPU-bound задача</h3>
 <p>Как и ожидалось, <strong><code>multiprocessing</code> показал наилучший результат (2.97 с)</strong>. Это единственный из трех подходов, который обеспечивает истинный параллелизм, распределяя вычисления по всем доступным ядрам процессора и обходя ограничение GIL.</p>
 <p>Подходы <code>threading</code> (16.11 с) и <code>asyncio</code> (15.54 с) оказались значительно медленнее. В обоих случаях из-за GIL вычисления не могут выполняться параллельно. Более того, накладные расходы на создание потоков и переключение контекста между ними приводят к тому, что производительность оказывается хуже, чем была бы у простого последовательного выполнения в одном потоке. Схожее время у <code>threading</code> и <code>asyncio</code> объясняется тем, что в реализации <code>asyncio</code> для этой задачи использовался <code>ThreadPoolExecutor</code>, который по своей сути является многопоточным исполнителем.</p>
