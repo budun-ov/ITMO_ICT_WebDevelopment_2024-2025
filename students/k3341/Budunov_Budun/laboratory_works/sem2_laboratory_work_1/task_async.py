@@ -60,7 +60,7 @@ async def run_in_executor(url, tag_name):
         )
         return result
 
-async def task_2(url: str, tag_name: str = "async"):
+async def task_2(url: str = "https://api.openalex.org/works?per-page=50&page=1", tag_name: str = "async"):
     """
     Асинхронно парсит один URL.
     
@@ -75,8 +75,8 @@ async def task_2(url: str, tag_name: str = "async"):
     result = await run_in_executor(url, tag_name)
     end_time = time.time()
     print(f"Async: Время выполнения для {url}: {end_time - start_time:.2f} секунд")
-    return result
+    return result 
 
-# if __name__ == "__main__":
-    # asyncio.run(task_1()) # 15.54 secs
-    # asyncio.run(task_2("task_asnc")) # 3.7 секунд
+if __name__ == "__main__":
+    asyncio.run(task_1()) # 15.54 secs
+    # asyncio.run(task_2()) # 3.7 секунд

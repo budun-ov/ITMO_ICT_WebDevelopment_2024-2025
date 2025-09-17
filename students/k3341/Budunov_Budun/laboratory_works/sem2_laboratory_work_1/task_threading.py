@@ -70,7 +70,7 @@ def task_2_threading(tag_name="THREAD_DEFAULT"):
     end_time = time.time()
     print(f"Threading: Общее время выполнения: {end_time - start_time:.2f} секунд")
 
-def task_2(url: str, tag_name: str = "threading"):
+def task_2(url: str = "https://api.openalex.org/works?per-page=50&page=1", tag_name: str = "threading"):
     """
     Парсит один URL в потоке.
     

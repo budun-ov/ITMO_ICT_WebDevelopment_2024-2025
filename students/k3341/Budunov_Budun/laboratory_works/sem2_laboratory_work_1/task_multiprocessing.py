@@ -64,7 +64,7 @@ def task_2_multiprocessing(tag_name="MLTPRCSS_DEFAULT"):
     end_time = time.time()
     print(f"Multiprocessing: Общее время выполнения: {end_time - start_time:.2f} секунд")
 
-def task_2(url: str, tag_name: str = "multiprocessing"):
+def task_2(url: str = "https://api.openalex.org/works?per-page=50&page=1", tag_name: str = "multiprocessing"):
     """
     Парсит один URL.
     
